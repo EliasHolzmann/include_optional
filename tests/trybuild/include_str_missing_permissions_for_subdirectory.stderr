@@ -1,0 +1,5 @@
+error: Couldn't access /proc/1/fd/doesnt_exist: Permission denied (os error 13)
+ --> $DIR/include_str_missing_permissions_for_subdirectory.rs:6:45
+  |
+6 |     include_optional::include_str_optional!("/proc/1/fd/doesnt_exist");
+  |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -1,0 +1,7 @@
+error: couldn't read /dev/mem: Permission denied (os error 13)
+ --> $DIR/include_str_missing_permissions.rs:2:5
+  |
+2 |     include_optional::include_str_optional!("/dev/mem");
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the macro `include_str` (in Nightly builds, run with -Z macro-backtrace for more info)
