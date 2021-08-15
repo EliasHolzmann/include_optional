@@ -1,6 +1,6 @@
 [package]
 name = "include_optional"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2018"
 description = "Option-returning versions of include_X macros"
 license = "MIT OR Apache-2.0"
