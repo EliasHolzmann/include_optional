@@ -1,12 +1,5 @@
 use include_optional::include_bytes_optional;
 
-#[derive(Debug)]
-struct Metadata {
-    foo: &'static str,
-    do_bar: bool,
-    baz_count: u32,
-}
-
 static DEFAULT_METADATA: [u8; 4] = [0xAB, 0xAD, 0x1D, 0xEA];
 
 fn main() {
