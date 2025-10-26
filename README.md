@@ -2,9 +2,7 @@
 
 ----
 
-**Note: This currently only works on nightly Rust.** This crate depends on [`proc_macro::SourceFile::path()`](https://doc.rust-lang.org/nightly/proc_macro/struct.SourceFile.html#method.path), which is [not yet stabilized](https://github.com/rust-lang/rust/issues/54725) (additionally, there is a dependency on the unstable function [`std::path::Path::try_exists`](https://doc.rust-lang.org/nightly/std/path/struct.Path.html#method.try_exists), however, this dependency could probably be removed without too much hassle).
-
-If you are able to somehow avoid this dependency, pull requests are welcome!
+*MSRV: 1.88*
 
 ----
 

@@ -1,7 +1,6 @@
 #![deny(clippy::pedantic)]
 #![deny(clippy::cargo)]
 #![deny(clippy::nursery)]
-#![feature(proc_macro_span, path_try_exists)]
 #![doc = include_str!("../README.md")]
 
 use proc_macro::TokenStream;
@@ -9,14 +8,22 @@ use quote::{quote, quote_spanned};
 use std::path::PathBuf;
 use syn::{parse_macro_input, LitStr};
 
-// this is a (heavily) modified version from the `resolve_path` function rustc uses to implement `include_X!` – see https://github.com/rust-lang/rust/blob/c6094fc7b9981d755abeb8c0e866a0f6315b3ec3/compiler/rustc_expand/src/base.rs#L1097
+// this is a (heavily) modified version from the `resolve_path` function rustc uses to implement `include_X!` – see https://github.com/rust-lang/rust/blob/c6094fc7/compiler/rustc_expand/src/base.rs#L1097
 fn resolve_path(file: &LitStr) -> PathBuf {
     let path: PathBuf = file.value().into();
 
     // Relative paths are resolved relative to the file in which they are found
     // after macro expansion (that is, they are unhygienic).
     if path.is_relative() {
-        let mut result = proc_macro::Span::call_site().source_file().path();
+        // rustc uses `rustc_span::source_map:SourceMap::span_to_filename()` here,
+        // which in turn uses `source_map.lookup_char_pos(sp.lo()).file.name.clone()`,
+        // which is also what `proc_macro::Span::local_file()` does (via
+        // `rustc_expand::server::Span::local_file`). Therefore, use this over
+        // `proc_nacro::Span::file()`.
+        let mut result = proc_macro::Span::call_site()
+            .local_file()
+            // error message adapted from https://github.com/rust-lang/rust/blob/28880985/compiler/rustc_expand/messages.ftl#L191-L192
+            .expect("Cannot resolve relative path in non-file source");
         result.pop();
         result.push(path);
         result
