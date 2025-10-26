@@ -1,4 +1,4 @@
-# include_optional
+# `include_optional`
 
 ----
 
@@ -21,9 +21,5 @@ include_optional = "1.0"
 This includes some metadata from a file, falling back to default metadata if the file is missing:
 ```rust
 use include_optional::include_str_optional;
-
-fn main() {
-    let metadata:  &'static str = include_str_optional!("./metadata_files/file_exists.txt" ).unwrap_or("default metadata string");
-    //...
-}
+let metadata:  &'static str = include_str_optional!("./metadata_files/file_exists.txt" ).unwrap_or("default metadata string");
 ```
