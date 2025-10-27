@@ -141,7 +141,7 @@ macro_rules! gen_include_optional_macro {
             let file_lit = parse_macro_input!(input as LitStr);
             match get_file_exists(&file_lit) {
                 FileExists::Exists => quote! {
-                    Some($original_macro!(#file_lit))
+                    ::core::option::Option::Some($original_macro!(#file_lit))
                 },
                 FileExists::NoSuchFile => {
                     #[cfg(feature = "nightly")]
@@ -150,7 +150,7 @@ macro_rules! gen_include_optional_macro {
                     }
 
                     quote! {
-                        None
+                        ::core::option::Option::None
                     }
                 },
                 FileExists::Error(e) => {
@@ -158,7 +158,7 @@ macro_rules! gen_include_optional_macro {
                     let file_lit_span = file_lit.span();
                     quote_spanned! {
                         file_lit_span =>
-                        compile_error!(#compile_error)
+                        ::core::compile_error!(#compile_error)
                     }
                 }
             }.into()
