@@ -26,12 +26,12 @@ jobs:
       run: cargo clippy --verbose
     - name: Fmt
       run: cargo fmt --check
-  build-stable:
+  build-msrv:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - name: Use stable Rust
-      run: rustup default stable
+      run: rustup default 1.88
     - name: Install Clippy
       run: rustup component add clippy
     - name: Install Rustfmt
