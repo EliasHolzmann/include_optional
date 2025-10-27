@@ -1,8 +1,21 @@
 # `include_optional`
 
+*MSRV: 1.88*
+
 ----
 
-*MSRV: 1.88*
+**Note**: This crate has a known bug in regards to proc-macro caching. If an
+included file does not exist and a macro from this crate returns `None`, this
+result is cached forever. The macro isn't reevaluated when the file is added
+later. A fix for this is currently not possible in Stable Rust.
+
+If you are running Nightly Rust, you can enable the `nightly` feature. With
+this, this crate makes use of the unstable [`track_path`]
+feature that is necessary in
+order to fix this. Otherwise, you will have to call `cargo clean` after
+adding an included file to force reevaluation.
+
+[`track_path`]: https://github.com/rust-lang/rust/issues/99515]
 
 ----
 

@@ -8,6 +8,9 @@ keywords = ["include", "option", "proc-macro"]
 repository = "https://github.com/EliasHolzmann/include_optional"
 categories = ["no-std"]
 
+[features]
+nightly = []
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]

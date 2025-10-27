@@ -1,0 +1,7 @@
+[package]
+name = "macro_caching"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+include_optional = {path = "../../", features = ["nightly"]}
