@@ -1,7 +1,7 @@
 #![deny(clippy::pedantic)]
 #![deny(clippy::cargo)]
 #![deny(clippy::nursery)]
-#![cfg_attr(feature = "nightly", feature(track_path))]
+#![cfg_attr(feature = "nightly", feature(proc_macro_tracked_path))]
 #![doc = include_str!("../README.md")]
 
 use proc_macro::TokenStream;
@@ -146,7 +146,7 @@ macro_rules! gen_include_optional_macro {
                 FileExists::NoSuchFile => {
                     #[cfg(feature = "nightly")]
                     {
-                        proc_macro::tracked_path::path(file_lit.value());
+                        proc_macro::tracked::path(file_lit.value());
                     }
 
                     quote! {
