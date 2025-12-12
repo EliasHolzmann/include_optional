@@ -4,7 +4,8 @@
 
 ----
 
-**Note**: This crate has a known bug in regards to proc-macro caching. If an
+**Note**: With default feature flags, this crate has a known bug in
+regards to proc-macro caching. If an
 included file does not exist and a macro from this crate returns `None`, this
 result is cached forever. The macro isn't reevaluated when the file is added
 later. A fix for this is currently not possible in Stable Rust.
